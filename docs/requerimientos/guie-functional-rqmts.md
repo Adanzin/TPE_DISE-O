@@ -4,6 +4,7 @@ the documents provided to all teams. You will find the _actors_ we identified, a
 # ***Actors***
 - Cliente
 - Sistema
+- Mercado Libre
 
 <br>
 
