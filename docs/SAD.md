@@ -21,7 +21,7 @@ Este documento presenta la solución arquitectónica para la migración de un si
     -   Monitoreo constante para detectar y resolver problemas proactivamente.
 -   Beneficio: Continuidad en los módulos críticos y experiencia consistente para los usuarios.
 
-1. Patrón de Tolerancia a Fallos
+2. Patrón de Tolerancia a Fallos
 -   Motivación: Mitigar el impacto de errores en los módulos críticos (Pagos y Reparto y Rutas).
 -   Implementación:
     -   Conmutación por error (failover) entre servicios en caso de fallas.
@@ -74,7 +74,11 @@ Integrando las decisiones anteriores, el sistema adoptará la siguiente arquitec
 -   Reducir riesgos de fallos mediante mecanismos proactivos.
 -   Mejorar la experiencia del usuario con tiempos de respuesta rápidos.
 
-
+## Diagramas de la Arquitectura Final
+### Diagrama de Allication 
+Este diagrama muestra la relación entre el software y el hardware o entre componentes lógicos.
 ![Diagrama-de-Allocation](https://github.com/Adanzin/TPE_DISE-O/blob/827739b298f04260732ad4bb1d2b100a871cf75d/docs/imagenes/0004-Diagrama-de-Allocation-Final.png)
 
+### Diagrama de Flujo
+Este diagrama describe procesos, interacciones entre componentes o pasos secuenciales en la lógica del sistema. 
 ![Diagrama-de-Flujo](https://github.com/Adanzin/TPE_DISE-O/blob/827739b298f04260732ad4bb1d2b100a871cf75d/docs/imagenes/0004-Diagrama-de-Flujo.jpeg)
