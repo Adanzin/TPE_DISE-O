@@ -75,7 +75,7 @@ Integrando las decisiones anteriores, el sistema adoptará la siguiente arquitec
 -   Mejorar la experiencia del usuario con tiempos de respuesta rápidos.
 
 ## Diagramas de la Arquitectura Final
-### Diagrama de Allication 
+### Diagrama de Allocation 
 Este diagrama muestra la relación entre el software y el hardware o entre componentes lógicos.
 ![Diagrama-de-Allocation](https://github.com/Adanzin/TPE_DISE-O/blob/827739b298f04260732ad4bb1d2b100a871cf75d/docs/imagenes/0004-Diagrama-de-Allocation-Final.png)
 
