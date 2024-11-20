@@ -1,12 +1,11 @@
 # SAD (System Architecture Document)
 
 ===========================================================
-
-### Título: Solución Integral Basada en Patrones Arquitectónicos para la Migración a Microservicios
-Este documento presenta la solución arquitectónica para la migración de un sistema monolítico a una arquitectura basada en microservicios, optimizada para manejar alta disponibilidad, escalabilidad, tolerancia a fallos y tiempos de respuesta rápidos. La solución se basa en cuatro patrones arquitectónicos principales: Alta Disponibilidad, Tolerancia a Fallos, API Gateway, y Balanceo de Carga.
-
 ### Contexto
 El sistema existente utiliza dos bases de datos SQL para gestionar información de Clientes y Pedidos. El objetivo principal es transformar este sistema en una arquitectura moderna basada en microservicios, con acceso a través de protocolos HTTP/REST. Los principales requisitos incluyen:
+
+### Solución Integral Basada en Patrones Arquitectónicos para la Migración a Microservicios
+Este documento presenta la solución arquitectónica para la migración de un sistema monolítico a una arquitectura basada en microservicios, optimizada para manejar alta disponibilidad, escalabilidad, tolerancia a fallos y tiempos de respuesta rápidos. La solución se basa en cuatro patrones arquitectónicos principales: Alta Disponibilidad, Tolerancia a Fallos, API Gateway, y Balanceo de Carga.
 
 1. Alta disponibilidad para los módulos críticos (Clientes, Pagos y Reparto y Rutas).
 2. Escalabilidad para manejar el creciente volumen de pedidos.
