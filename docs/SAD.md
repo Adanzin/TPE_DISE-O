@@ -1,39 +1,81 @@
-# Software Architecture Document (SAD)
-En el siguiente informe presentaremos el diseño de una arquitectura de microservicios para una compañía de productos alimenticios, la cual busca migrar su sistema actual, de naturaleza monolítica, hacia una solución más modular y fácil de evolucionar. La nueva arquitectura dividirá el sistema en microservicios independientes para cada funcionalidad clave: gestión de clientes, pedidos, rutas de reparto, estadísticas, incidencias y pagos.
-Se han aplicado patrones de diseño y tácticas de arquitectura para mejorar la escalabilidad, disponibilidad y seguridad, utilizando protocolos HTTP/REST para facilitar el acceso desde clientes en dispositivos móviles y de escritorio. Este enfoque garantiza una mayor flexibilidad y adaptabilidad a las demandas del negocio, optimizando la interacción y gestión de los datos alojados en las bases SQL existentes.
+# SAD (System Architecture Document)
 
-## ITERACION 0 
+===========================================================
 
-### Análisis del Sistema y capturacion de requerimientos
-En esta Iteración se recolectaron los siguientes DRIVERS.
-- [Requerimientos Funcionales](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/requerimientos/guie-functional-rqmts.md)
-- [Atributos de calidad](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/requerimientos/Atributos%20de%20calidad.md)
-- [Tabla de Prioridad](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/requerimientos/TablaDePrioridad.md)
+### Título: Solución Integral Basada en Patrones Arquitectónicos para la Migración a Microservicios
+Este documento presenta la solución arquitectónica para la migración de un sistema monolítico a una arquitectura basada en microservicios, optimizada para manejar alta disponibilidad, escalabilidad, tolerancia a fallos y tiempos de respuesta rápidos. La solución se basa en cuatro patrones arquitectónicos principales: Alta Disponibilidad, Tolerancia a Fallos, API Gateway, y Balanceo de Carga.
 
-## ITERACION 1
-En esta iteración del método ADD, el objetivo principal es abordar los drivers de alta prioridad definidos para el sistema (QA2, QA3, QA5, RF1,RF6, RF9, RF10), con un enfoque especial en garantizar disponibilidad (99.9%), escalabilidad, y rendimiento en módulos críticos como Clientes y Pagos. Para lograr esto, se introducirá un diseño basado en patrones de alta disponibilidad que responda a los requisitos funcionales (RF) y los atributos de calidad (QA) priorizados.
-Durante esta fase, el enfoque se centrará en identificar las decisiones arquitectónicas necesarias para desacoplar la arquitectura monolítica existente, implementar microservicios autónomos, y adoptar protocolos HTTP/REST para acceso interoperable desde múltiples plataformas. Esta iteración también tendrá en cuenta las dependencias críticas entre los módulos para optimizar la resiliencia del sistema frente a fallos y escalabilidad bajo cargas variables.
-El diseño en esta etapa busca sentar las bases para garantizar que las decisiones tomadas sean compatibles con la evolución de los microservicios y sus requisitos operativos, minimizando el impacto en la mantenibilidad y maximizando la satisfacción del consumidor.
+### Contexto
+El sistema existente utiliza dos bases de datos SQL para gestionar información de Clientes y Pedidos. El objetivo principal es transformar este sistema en una arquitectura moderna basada en microservicios, con acceso a través de protocolos HTTP/REST. Los principales requisitos incluyen:
 
-### Decisión tomada
-- [High Availability Pattern para Arquitectura de Microservicios](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/decisions/0001-High-Availability-Pattern-para-Arquitectura-de-Microservicios.md)
+1. Alta disponibilidad para los módulos críticos (Clientes, Pagos y Reparto y Rutas).
+2. Escalabilidad para manejar el creciente volumen de pedidos.
+3. Tolerancia a fallos para garantizar continuidad operativa.
+4. Respuesta eficiente (<2 segundos) en los módulos más sensibles, como Pedidos y Reparto y Rutas.
 
-### Diagramas de la decision
-- [Diagrama de Modulos](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/decisions/0001-High-Availability-Pattern-para-Arquitectura-de-Microservicios.md)
+## Decisiones Arquitectónicas
+1. Patrón de Alta Disponibilidad
+-   Motivación: Garantizar que el sistema pueda responder al 99,9% de las solicitudes, minimizando tiempos de inactividad.
+-   Implementación:
+    -   Uso de balanceadores de carga distribuidos para asegurar redundancia.
+    -   Replicación de bases de datos para evitar puntos únicos de fallo.
+    -   Monitoreo constante para detectar y resolver problemas proactivamente.
+-   Beneficio: Continuidad en los módulos críticos y experiencia consistente para los usuarios.
 
-## ITERACION 2
-Este ADR aborda las decisiones necesarias para implementar un patrón de arquitectura tolerante a fallos que permita cumplir con los atributos de calidad y requisitos funcionales más críticos del sistema. El enfoque se centra en asegurar alta disponibilidad, confiabilidad y manejo eficiente de fallos en componentes clave como Clientes y Pagos, sin comprometer la escalabilidad ni el rendimiento del sistema.
-Este ADR busca establecer un marco sólido para gestionar transacciones sensibles, mantener la continuidad operativa y satisfacer las expectativas de los usuarios.
+1. Patrón de Tolerancia a Fallos
+-   Motivación: Mitigar el impacto de errores en los módulos críticos (Pagos y Reparto y Rutas).
+-   Implementación:
+    -   Conmutación por error (failover) entre servicios en caso de fallas.
+    -   Uso de circuit breakers y patrones de retry para manejar errores parciales.
+    -   Integración con mecanismos de notificación en tiempo real para alertar sobre incidencias.
+-   Beneficio: Resiliencia frente a fallos y menor impacto en la operación del sistema.
 
-### Decisión tomada
-- [Patrón de Arquitectura Tolerante a Fallos para un Sistema Basado en Microservicios](https://github.com/Adanzin/TPE_DISE-O/blob/545773748f595be49f708dece5a9e1dba5d790d1/docs/decisions/0002-Patr%C3%B3n-de-Arquitectura-Tolerante-a-Fallos-para-un-Sistema-Basado-en-Microservicios.md)
+3. Patrón API Gateway para Reparto y Rutas
+-   Motivación: Gestionar el alto tráfico y asegurar tiempos de respuesta rápidos en un módulo crítico.
+-   Implementación:
+    -   Enrutamiento basado en reglas HTTP hacia microservicios específicos.
+    -   Composición de APIs para combinar datos de múltiples fuentes en una sola respuesta.
+    -   Capa de autenticación y autorización para reforzar la seguridad.
+-   Beneficio: Gestión eficiente del tráfico y funcionalidad integrada en módulos complejos.
+
+4. Patrón de Balanceo de Carga
+-   Motivación: Distribuir la carga uniformemente entre los microservicios para mantener un rendimiento óptimo.
+-   Implementación:
+    -   Algoritmo Weighted Round Robin para priorizar instancias más eficientes.
+    -   Integración con herramientas de monitoreo para detectar cuellos de botella.
+    -   Compatibilidad con escalado automático para adaptarse a picos de demanda.
+-   Beneficio: Escalabilidad y latencia reducida, especialmente para el módulo de Pedidos.
+
+# Arquitectura Final
+Integrando las decisiones anteriores, el sistema adoptará la siguiente arquitectura:
+
+1.  Módulos Críticos (Clientes, Pagos y Reparto y Rutas):
+
+-   Alta disponibilidad garantizada mediante redundancia y balanceo de carga.
+-   API Gateway como punto de entrada unificado para enrutamiento eficiente.
+-   Tolerancia a fallos con conmutación por error y circuit breakers.
+
+2.  Módulos Semi-Críticos (Pedidos e Incidencias):
+
+-   Escalabilidad horizontal con balanceo de carga y escalado automático.
+-   Monitoreo continuo para asegurar tiempos de respuesta consistentes.
+
+3.  Módulos No Críticos (Estadísticas):
+
+-   Acceso optimizado mediante almacenamiento en caché para reducir la carga en la base de datos.
+
+4.  Tecnologías Clave:
+-   Kubernetes para orquestar microservicios con escalado automático.
+-   NGINX o AWS API Gateway para implementar el patrón API Gateway.
+-   HAProxy o balanceadores nativos de la nube para distribuir la carga.
+
+### Esta solución aborda los principales requisitos del sistema al:
+
+-   Garantizar disponibilidad y escalabilidad mediante patrones bien integrados.
+-   Reducir riesgos de fallos mediante mecanismos proactivos.
+-   Mejorar la experiencia del usuario con tiempos de respuesta rápidos.
 
 
-## ITERACION 3
-Este ADR se centra en la adopción del patrón API Gateway para el módulo de Reparto y Rutas, con el objetivo de satisfacer requisitos clave de rendimiento, escalabilidad y tiempos de respuesta rápidos. En esta iteración, se analizan los desafíos de manejar un alto volumen de tráfico y la necesidad de enrutar eficientemente las solicitudes hacia los microservicios correspondientes, mientras se integran mecanismos que mejoren la seguridad y el control del sistema.
+![Diagrama-de-Allocation](https://github.com/Adanzin/TPE_DISE-O/blob/827739b298f04260732ad4bb1d2b100a871cf75d/docs/imagenes/0004-Diagrama-de-Allocation-Final.png)
 
-Se abordan las implicaciones técnicas del patrón, sus ventajas, como la composición de resultados de múltiples servicios y su capacidad para gestionar tráfico intensivo, y sus desventajas, como la complejidad adicional que podría introducir en la arquitectura. Además, se exploran alternativas como el balanceador de carga y el almacenamiento en caché, evaluando su viabilidad frente a los objetivos del sistema. Este documento establece la base para garantizar una experiencia de usuario eficiente y un desempeño robusto en este módulo crítico del sistema.
-
-### Decisión tomada
-- [Patrón API Gateway para Reparto y Rutas](https://github.com/Adanzin/TPE_DISE-O/blob/545773748f595be49f708dece5a9e1dba5d790d1/docs/decisions/0003-Patr%C3%B3n-API-Gateway-para-Reparto-y-Rutas.md)
-
+![Diagrama-de-Flujo](https://github.com/Adanzin/TPE_DISE-O/blob/827739b298f04260732ad4bb1d2b100a871cf75d/docs/imagenes/0004-Diagrama-de-Flujo.jpeg)
