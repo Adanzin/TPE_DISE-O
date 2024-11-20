@@ -1,4 +1,4 @@
-# ATTRIBUTE-DRIVEN DESIGN (ADD) 
+# Software Architecture Document (SAD)
 En el siguiente informe presentaremos el diseño de una arquitectura de microservicios para una compañía de productos alimenticios, la cual busca migrar su sistema actual, de naturaleza monolítica, hacia una solución más modular y fácil de evolucionar. La nueva arquitectura dividirá el sistema en microservicios independientes para cada funcionalidad clave: gestión de clientes, pedidos, rutas de reparto, estadísticas, incidencias y pagos.
 Se han aplicado patrones de diseño y tácticas de arquitectura para mejorar la escalabilidad, disponibilidad y seguridad, utilizando protocolos HTTP/REST para facilitar el acceso desde clientes en dispositivos móviles y de escritorio. Este enfoque garantiza una mayor flexibilidad y adaptabilidad a las demandas del negocio, optimizando la interacción y gestión de los datos alojados en las bases SQL existentes.
 
