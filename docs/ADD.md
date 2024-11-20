@@ -28,7 +28,9 @@ El diseño en esta etapa busca sentar las bases para garantizar que las decision
 - [High Availability Pattern para Arquitectura de Microservicios](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/decisions/0001-High-Availability-Pattern-para-Arquitectura-de-Microservicios.md)
 
 ### Diagramas de la decision
-- [Diagrama de Modulos](https://github.com/Adanzin/TPE_DISE-O/blob/399a12c6a0e978c3e7603cb3d7a5c2a3e227cb8d/docs/decisions/0001-High-Availability-Pattern-para-Arquitectura-de-Microservicios.md)
+- [Diagrama de Modulos](https://github.com/Adanzin/TPE_DISE-O/blob/fd8c1ac74a7ec2f2bf9d682414417cb4b7282850/docs/imagenes/0001-Diagrama-de-Modulos.png)
+
+
 
 ## ITERACION 2
 Este ADR aborda las decisiones necesarias para implementar un patrón de arquitectura tolerante a fallos que permita cumplir con los atributos de calidad y requisitos funcionales más críticos del sistema. El enfoque se centra en asegurar alta disponibilidad, confiabilidad y manejo eficiente de fallos en componentes clave como Clientes y Pagos, sin comprometer la escalabilidad ni el rendimiento del sistema.
@@ -42,6 +44,8 @@ Este ADR busca establecer un marco sólido para gestionar transacciones sensible
 ### Decisiónes tomadas
 - [Patrón de Arquitectura Tolerante a Fallos para un Sistema Basado en Microservicios](https://github.com/Adanzin/TPE_DISE-O/blob/545773748f595be49f708dece5a9e1dba5d790d1/docs/decisions/0002-Patr%C3%B3n-de-Arquitectura-Tolerante-a-Fallos-para-un-Sistema-Basado-en-Microservicios.md)
 
+
+
 ## ITERACION 3
 Este ADR se centra en la adopción del patrón API Gateway para el módulo de Reparto y Rutas, con el objetivo de satisfacer requisitos clave de rendimiento, escalabilidad y tiempos de respuesta rápidos. En esta iteración, se analizan los desafíos de manejar un alto volumen de tráfico y la necesidad de enrutar eficientemente las solicitudes hacia los microservicios correspondientes, mientras se integran mecanismos que mejoren la seguridad y el control del sistema.
 Se abordan las implicaciones técnicas del patrón, sus ventajas, como la composición de resultados de múltiples servicios y su capacidad para gestionar tráfico intensivo, y sus desventajas, como la complejidad adicional que podría introducir en la arquitectura. Además, se exploran alternativas como el balanceador de carga y el almacenamiento en caché, evaluando su viabilidad frente a los objetivos del sistema. Este documento establece la base para garantizar una experiencia de usuario eficiente y un desempeño robusto en este módulo crítico del sistema.
@@ -52,6 +56,8 @@ Se abordan las implicaciones técnicas del patrón, sus ventajas, como la compos
 
 ### Decisión tomada
 - [Patrón API Gateway para Reparto y Rutas](https://github.com/Adanzin/TPE_DISE-O/blob/545773748f595be49f708dece5a9e1dba5d790d1/docs/decisions/0003-Patr%C3%B3n-API-Gateway-para-Reparto-y-Rutas.md)
+
+
 
 ## ITERACION 4
 En esta iteración, el foco principal fue manejar el incremento de carga en el módulo de Pedidos, garantizando un rendimiento óptimo y escalabilidad frente a un aumento significativo en el número de pedidos por hora. Se tomó la decisión de implementar el patrón de Balanceo de Carga, el cual permite distribuir de manera eficiente las solicitudes entre los servicios disponibles, reduciendo la latencia y aumentando la predictibilidad para los clientes.
