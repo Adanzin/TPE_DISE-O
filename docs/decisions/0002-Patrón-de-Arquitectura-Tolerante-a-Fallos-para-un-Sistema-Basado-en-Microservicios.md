@@ -1,4 +1,4 @@
-**High Availability Pattern for Microservices Architecture**
+**Patrón de Arquitectura Tolerante a Fallos para un Sistema Basado en Microservicios**
 ===========================================================
 
 **Title**
